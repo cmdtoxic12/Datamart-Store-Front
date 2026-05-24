@@ -8,19 +8,32 @@
 
   <div class="auth-card">
     <h1>C-LICON DATA BANK</h1>
-    <p>Secure Admin Login</p>
+    <p id="authSubtitle">Login to continue</p>
+
+    <div class="auth-tabs">
+      <button id="loginTab" class="active" onclick="setAuthMode('login')">
+        Login
+      </button>
+      <button id="signupTab" onclick="setAuthMode('signup')">
+        Signup
+      </button>
+    </div>
 
     <input id="email" type="email" placeholder="Email" />
     <input id="password" type="password" placeholder="Password" />
-    <input
-  id="confirmPassword"
-  type="password"
-  placeholder="Confirm Password"
-/>
 
-    <button onclick="login()">Login</button>
-    <button onclick="signup()">Create Account</button>
-    <button onclick="googleLogin()">Continue with Google</button>
+    <input
+      id="confirmPassword"
+      type="password"
+      placeholder="Confirm Password"
+      class="hidden"
+    />
+
+    <button id="authActionBtn" onclick="login()">Login</button>
+
+    <button onclick="googleLogin()">
+      Continue with Google
+    </button>
 
     <p id="authMessage"></p>
   </div>
