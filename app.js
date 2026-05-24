@@ -370,6 +370,23 @@ function startLiveOrders() {
 
 startLiveOrders();
 
+function showLoader() {
+  const loader =
+    document.getElementById("loader");
+
+  if (loader) {
+    loader.classList.add("active");
+  }
+}
+
+function hideLoader() {
+  const loader =
+    document.getElementById("loader");
+
+  if (loader) {
+    loader.classList.remove("active");
+  }
+}
 
 async function refreshAll() {
   await loadDashboard();
@@ -380,3 +397,115 @@ async function refreshAll() {
 
 refreshAll();
   
+document.getElementById("orderForm")
+.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  try {
+
+    showLoader();
+
+    const body = {
+      phoneNumber:
+        document.getElementById("phoneNumber")
+        .value
+        .trim(),
+
+      network:
+        document.getElementById("network")
+        .value,
+
+      capacity:
+        Number(
+          document.getElementById("capacity")
+          .value
+        )
+    };
+
+    const data = await api(
+      "place-order",
+      {},
+      "POST",
+      body
+    );
+
+    hideLoader();
+
+    console.log("PLACE ORDER RESPONSE:", data);
+
+    if (data.status === "success") {
+
+      showToast(
+        "Order placed successfully ✅",
+        "success"
+      );
+
+      document.getElementById("placeOrderResult")
+      .innerHTML = `
+        <div class="track-card">
+          <h2>Order Successful</h2>
+
+          <div class="track-grid">
+
+            <div>
+              <small>Reference</small>
+              <p>${data.data.order.reference}</p>
+            </div>
+
+            <div>
+              <small>Phone</small>
+              <p>${data.data.order.phoneNumber}</p>
+            </div>
+
+            <div>
+              <small>Network</small>
+              <p>${data.data.order.network}</p>
+            </div>
+
+            <div>
+              <small>Bundle</small>
+              <p>${data.data.order.capacity} GB</p>
+            </div>
+
+            <div>
+              <small>Price</small>
+              <p>GHS ${data.data.order.price}</p>
+            </div>
+
+            <div>
+              <small>Status</small>
+              <p>${data.data.order.status}</p>
+            </div>
+
+          </div>
+        </div>
+      `;
+
+      document.getElementById("orderForm").reset();
+
+      refreshAll();
+
+    } else {
+
+      showToast(
+        data.message || "Order failed",
+        "error"
+      );
+
+      console.error(data);
+    }
+
+  } catch (error) {
+
+    hideLoader();
+
+    console.error(error);
+
+    showToast(
+      "Failed to place order",
+      "error"
+    );
+  }
+
+});
