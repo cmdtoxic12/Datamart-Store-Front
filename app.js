@@ -53,9 +53,13 @@ async function loadAnalytics() {
   const data = await api("orders");
 
   const orders =
-    data.data?.orders ||
-    data.data ||
-    [];
+  data.data?.orders ||
+  data.data?.items ||
+  data.data?.results ||
+  data.orders ||
+  data.items ||
+  data.results ||
+  [];
 
   const completed =
     orders.filter(o => o.status === "completed").length;
