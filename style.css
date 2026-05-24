@@ -269,14 +269,6 @@ section button {
         background-color: rgba(111, 228, 88, 0.1);
       }
 
-      #toastBox {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-      }
-
       #authActionBtn {
         background-color: #28a745;
         width: 42%;
