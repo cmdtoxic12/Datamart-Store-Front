@@ -164,6 +164,8 @@ async function loadOrders() {
 
   const orders = data.data?.orders || data.data || data.orders || [];
 
+  updateDeliveryProgress(orders);
+
   const tbody = document.getElementById("ordersTable");
   tbody.innerHTML = "";
 
