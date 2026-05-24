@@ -16,6 +16,22 @@ async function api(action, params = {}, method = "GET", body = null) {
   return await res.json();
 }
 
+function showToast(message, type = "success") {
+
+  const toast = document.createElement("div");
+
+  toast.className = `toast ${type}`;
+
+  toast.textContent = message;
+
+  document.getElementById("toastBox")
+    .appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3500);
+}
+
 function showPage(id) {
   document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
