@@ -16,6 +16,16 @@ async function api(action, params = {}, method = "GET", body = null) {
   return await res.json();
 }
 
+function showLoader() {
+  document.getElementById("loader")
+    .classList.add("active");
+}
+
+function hideLoader() {
+  document.getElementById("loader")
+    .classList.remove("active");
+}
+
 function showToast(message, type = "success") {
 
   const toast = document.createElement("div");
