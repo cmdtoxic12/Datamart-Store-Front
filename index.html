@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C-LICON DATA BANK</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>C-LICON</h2>
+    <button onclick="showPage('dashboard')">Dashboard</button>
+    <button onclick="showPage('orders')">Orders</button>
+    <button onclick="showPage('products')">Products</button>
+    <button onclick="showPage('wallet')">Wallet</button>
+    <button onclick="showPage('customers')">Customers</button>
+    <button onclick="showPage('placeOrder')">Place Order</button>
+    <button onclick="showPage('trackOrder')">Track Order</button>
+  </aside>
+
+  <main class="main">
+    <header>
+      <h1>Agent Store Dashboard</h1>
+      <button onclick="refreshAll()">Refresh</button>
+    </header>
+
+    <section id="dashboard" class="page active">
+      <div class="cards">
+        <div class="card"><h3>Total Orders</h3><p id="totalOrders">...</p></div>
+        <div class="card"><h3>Total Revenue</h3><p id="totalRevenue">...</p></div>
+        <div class="card"><h3>Total Customers</h3><p id="totalCustomers">...</p></div>
+        <div class="card"><h3>Store Status</h3><p id="storeStatus">...</p></div>
+      </div>
+    </section>
+
+    <section id="orders" class="page">
+      <h2>Orders</h2>
+      <select id="orderStatus" onchange="loadOrders()">
+        <option value="">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+        <option value="failed">Failed</option>
+        <option value="refunded">Refunded</option>
+      </select>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Phone</th>
+              <th>Network</th>
+              <th>GB</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="products" class="page">
+      <h2>Products</h2>
+      <div id="productsGrid" class="grid"></div>
+    </section>
+
+    <section id="wallet" class="page">
+      <h2>Wallet</h2>
+      <div class="cards">
+        <div class="card"><h3>Deposit</h3><p id="depositBalance">...</p></div>
+        <div class="card"><h3>Available Earnings</h3><p id="availableEarnings">...</p></div>
+        <div class="card"><h3>Pending</h3><p id="pendingBalance">...</p></div>
+      </div>
+    </section>
+
+    <section id="customers" class="page">
+      <h2>Customers</h2>
+      <input id="customerSearch" placeholder="Search phone/name/email" />
+      <button onclick="loadCustomers()">Search</button>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="customersTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="placeOrder" class="page">
+      <h2>Place Order</h2>
+      <form id="orderForm">
+        <input id="phoneNumber" placeholder="Phone number e.g. 0241234567" required />
+
+        <select id="network" required>
+          <option value="YELLO">MTN</option>
+          <option value="TELECEL">Telecel</option>
+          <option value="AT_PREMIUM">AirtelTigo</option>
+        </select>
+
+        <input id="capacity" type="number" placeholder="Capacity in GB" required />
+
+        <button type="submit">Place Order</button>
+      </form>
+      <pre id="placeOrderResult"></pre>
+    </section>
+
+    <section id="trackOrder" class="page">
+      <h2>Track Order</h2>
+      <input id="trackReference" placeholder="Order reference" />
+      <button onclick="trackOrder()">Track</button>
+      <pre id="trackResult"></pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
