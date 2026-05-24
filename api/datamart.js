@@ -38,6 +38,14 @@ module.exports = async function handler(req, res) {
       if (status) endpoint += `&status=${status}`;
     }
 
+    setInterval(() => {
+  const ordersPage = document.getElementById("orders");
+
+  if (ordersPage && ordersPage.classList.contains("active")) {
+    loadOrders();
+  }
+}, 10000);
+
     if (action === "order") {
       endpoint = `/orders/${reference}`;
     }
