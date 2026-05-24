@@ -72,6 +72,41 @@ function login() {
     });
 }
 
+let authMode = "login";
+
+function setAuthMode(mode) {
+  authMode = mode;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword");
+
+  const actionBtn =
+    document.getElementById("authActionBtn");
+
+  const subtitle =
+    document.getElementById("authSubtitle");
+
+  document.getElementById("authMessage").textContent = "";
+
+  if (mode === "login") {
+    confirmPassword.classList.add("hidden");
+    actionBtn.textContent = "Login";
+    actionBtn.onclick = login;
+    subtitle.textContent = "Login to continue";
+
+    document.getElementById("loginTab").classList.add("active");
+    document.getElementById("signupTab").classList.remove("active");
+  } else {
+    confirmPassword.classList.remove("hidden");
+    actionBtn.textContent = "Create Account";
+    actionBtn.onclick = signup;
+    subtitle.textContent = "Create your admin account";
+
+    document.getElementById("signupTab").classList.add("active");
+    document.getElementById("loginTab").classList.remove("active");
+  }
+}
+
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
 
