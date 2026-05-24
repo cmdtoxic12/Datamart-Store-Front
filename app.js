@@ -374,6 +374,7 @@ startLiveOrders();
 async function refreshAll() {
   await loadDashboard();
   await loadBalance();
+  await loadOrders();
   await loadAnalytics();
 }
 
