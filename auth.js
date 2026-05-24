@@ -1,3 +1,19 @@
+function showToast(message, type = "success") {
+
+  const toast = document.createElement("div");
+
+  toast.className = `toast ${type}`;
+
+  toast.textContent = message;
+
+  document.getElementById("toastBox")
+    .appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3500);
+}
+
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
