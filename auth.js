@@ -128,3 +128,13 @@ function googleLogin() {
 
   auth.signInWithRedirect(provider);
 }
+
+auth.getRedirectResult()
+  .then((result) => {
+    if (result.user) {
+      window.location.href = "index.html";
+    }
+  })
+  .catch((error) => {
+    document.getElementById("authMessage").textContent = error.message;
+  });
