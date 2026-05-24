@@ -125,16 +125,21 @@ function setAuthMode(mode) {
 
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
-
   auth.signInWithRedirect(provider);
 }
 
 auth.getRedirectResult()
   .then((result) => {
-    if (result.user) {
+    if (result && result.user) {
       window.location.href = "index.html";
     }
   })
   .catch((error) => {
     document.getElementById("authMessage").textContent = error.message;
   });
+
+auth.onAuthStateChanged((user) => {
+  if (user && window.location.pathname.includes("login.html")) {
+    window.location.href = "index.html";
+  }
+});
