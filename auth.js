@@ -126,11 +126,5 @@ function setAuthMode(mode) {
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  auth.signInWithPopup(provider)
-    .then(() => {
-      window.location.href = "index.html";
-    })
-    .catch(error => {
-      document.getElementById("authMessage").textContent = error.message;
-    });
+  auth.signInWithRedirect(provider);
 }
