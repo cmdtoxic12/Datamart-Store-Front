@@ -106,7 +106,7 @@ async function loadAnalytics() {
   data.items ||
   data.results ||
   [];
-
+console.log("ANALYTICS ORDERS:", orders);
   const completed =
     orders.filter(o => o.status === "completed").length;
 
