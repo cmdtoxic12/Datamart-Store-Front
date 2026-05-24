@@ -538,3 +538,13 @@ button:hover {
 .hidden {
   display: none;
 }
+.chart-card {
+  min-height: auto;
+  height: auto;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 260px !important;
+  max-height: 260px !important;
+}
