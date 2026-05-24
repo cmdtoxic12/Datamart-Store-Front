@@ -269,7 +269,7 @@ section button {
         background-color: rgba(111, 228, 88, 0.1);
       }
 
-      #authActionBtn {
+     /* #authActionBtn {
         background-color: #28a745;
         width: 42%;
         margin-right: 10px;
@@ -289,7 +289,7 @@ section button {
       #googleLoginBtn:hover {
         background-color: #c23321;
         box-shadow: 0 0 10px #0fb30a;
-      }
+      }*/
 
 .card h3 {
   color: #94a3b8;
