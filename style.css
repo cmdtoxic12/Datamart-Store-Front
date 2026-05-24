@@ -146,6 +146,64 @@ pre {
   overflow-x: auto;
 }
 
+.track-card {
+  background: #0f172a;
+  padding: 25px;
+  border-radius: 18px;
+  margin-top: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.track-header h2 {
+  margin: 0;
+}
+
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.track-grid small {
+  color: #94a3b8;
+}
+
+.track-grid p {
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.badge {
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.success {
+  background: rgba(34,197,94,0.2);
+  color: #22c55e;
+}
+
+.pending {
+  background: rgba(234,179,8,0.2);
+  color: #eab308;
+}
+
+.failed {
+  background: rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+
 @media (max-width: 800px) {
   body {
     display: block;
