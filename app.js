@@ -29,6 +29,26 @@ function showPage(id) {
   if (id === "customers") loadCustomers();
 }
 
+function updateDeliveryProgress(orders) {
+  if (!orders || !orders.length) return;
+
+  const completed = orders.find(o => o.status === "completed");
+  const pending = orders.find(o => o.status === "pending");
+
+  document.getElementById("lastDelivered").textContent =
+    completed
+      ? `✅ Last delivered: ${completed.reference || completed.id} — ${completed.capacity || ""}GB to ${completed.phoneNumber || "N/A"}`
+      : "✅ Last delivered: None yet";
+
+  document.getElementById("checkingNow").textContent =
+    pending
+      ? `🔄 Checking now: ${pending.reference || pending.id} — placed at ${pending.placedAt ? new Date(pending.placedAt).toLocaleTimeString() : "recently"}`
+      : "🔄 Checking now: No pending order";
+
+  document.getElementById("lastChecked").textContent =
+    `Last checked: ${new Date().toLocaleTimeString()}`;
+}
+
 async function loadDashboard() {
   const data = await api("store");
   const store = data.data || {};
