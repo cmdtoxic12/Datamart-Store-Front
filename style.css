@@ -2,6 +2,41 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+span,
+td,
+th {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.main,
+.card,
+.track-card,
+.chart-card,
+.delivery-progress-card,
+table,
+form {
+  width: 100%;
+  max-width: 100%;
+}
+
+.cards,
+.track-grid,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 body {
