@@ -122,34 +122,97 @@ async function loadCustomers() {
 }
 
 async function trackOrder() {
-  const reference = document.getElementById("trackReference").value.trim();
+
+  const reference =
+    document.getElementById("trackReference")
+    .value
+    .trim();
 
   if (!reference) {
     alert("Enter order reference");
     return;
   }
 
-  const data = await api("order", { reference });
+  const response = await api("order", { reference });
 
-  document.getElementById("trackResult").textContent =
-    JSON.stringify(data, null, 2);
+  const order = response.data;
+
+  const result = document.getElementById("trackResult");
+
+  if (!order) {
+    result.innerHTML = `
+      <div class="card">
+        <h3>Order Not Found</h3>
+      </div>
+    `;
+    return;
+  }
+
+  const statusClass =
+    order.status === "completed"
+      ? "success"
+      : order.status === "pending"
+      ? "pending"
+      : "failed";
+
+  result.innerHTML = `
+    <div class="track-card">
+
+      <div class="track-header">
+        <h2>Order Details</h2>
+        <span class="badge ${statusClass}">
+          ${order.status}
+        </span>
+      </div>
+
+      <div class="track-grid">
+
+        <div>
+          <small>Reference</small>
+          <p>${order.reference}</p>
+        </div>
+
+        <div>
+          <small>Phone Number</small>
+          <p>${order.phoneNumber}</p>
+        </div>
+
+        <div>
+          <small>Network</small>
+          <p>${order.network}</p>
+        </div>
+
+        <div>
+          <small>Bundle</small>
+          <p>${order.capacity} GB</p>
+        </div>
+
+        <div>
+          <small>Price</small>
+          <p>GHS ${order.price}</p>
+        </div>
+
+        <div>
+          <small>Placed At</small>
+          <p>${new Date(order.placedAt).toLocaleString()}</p>
+        </div>
+
+        <div>
+          <small>Completed At</small>
+          <p>
+            ${
+              order.completedAt
+                ? new Date(order.completedAt).toLocaleString()
+                : "Pending"
+            }
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  `;
 }
-
-document.getElementById("orderForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const body = {
-    phoneNumber: document.getElementById("phoneNumber").value.trim(),
-    network: document.getElementById("network").value,
-    capacity: Number(document.getElementById("capacity").value),
-  };
-
-  const data = await api("place-order", {}, "POST", body);
-
-  document.getElementById("placeOrderResult").textContent =
-    JSON.stringify(data, null, 2);
-});
-
 async function refreshAll() {
   await loadDashboard();
   await loadBalance();
