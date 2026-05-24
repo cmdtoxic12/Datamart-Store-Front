@@ -254,6 +254,23 @@ Thank you for using C-LICON DATA BANK.
   URL.revokeObjectURL(url);
 }
 
+let liveOrdersInterval = null;
+
+function startLiveOrders() {
+  if (liveOrdersInterval) clearInterval(liveOrdersInterval);
+
+  liveOrdersInterval = setInterval(() => {
+    const ordersPage = document.getElementById("orders");
+
+    if (ordersPage.classList.contains("active")) {
+      loadOrders();
+    }
+  }, 10000);
+}
+
+startLiveOrders();
+
+
 async function refreshAll() {
   await loadDashboard();
   await loadBalance();
