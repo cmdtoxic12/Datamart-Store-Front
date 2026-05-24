@@ -156,8 +156,8 @@ pre {
 
 .track-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: left;
   margin-bottom: 20px;
 }
 
@@ -177,14 +177,14 @@ pre {
 
 .track-grid p {
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
 }
 
 .badge {
   padding: 8px 14px;
   border-radius: 30px;
-  font-size: 13px;
+  font-size: 10px;
   text-transform: uppercase;
   font-weight: bold;
 }
