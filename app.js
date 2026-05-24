@@ -46,6 +46,80 @@ async function loadDashboard() {
     store.status || "Unknown";
 }
 
+let ordersChart;
+
+async function loadAnalytics() {
+
+  const data = await api("orders");
+
+  const orders =
+    data.data?.orders ||
+    data.data ||
+    [];
+
+  const completed =
+    orders.filter(o => o.status === "completed").length;
+
+  const pending =
+    orders.filter(o => o.status === "pending").length;
+
+  const failed =
+    orders.filter(o => o.status === "failed").length;
+
+  const refunded =
+    orders.filter(o => o.status === "refunded").length;
+
+  const ctx =
+    document.getElementById("ordersChart");
+
+  if (ordersChart) {
+    ordersChart.destroy();
+  }
+
+  ordersChart = new Chart(ctx, {
+    type: "doughnut",
+
+    data: {
+      labels: [
+        "Completed",
+        "Pending",
+        "Failed",
+        "Refunded"
+      ],
+
+      datasets: [{
+        data: [
+          completed,
+          pending,
+          failed,
+          refunded
+        ],
+
+        backgroundColor: [
+          "#22c55e",
+          "#eab308",
+          "#ef4444",
+          "#3b82f6"
+        ],
+
+        borderWidth: 0
+      }]
+    },
+
+    options: {
+      responsive: true,
+
+      plugins: {
+        legend: {
+          labels: {
+            color: "white"
+          }
+        }
+      }
+    }
+  });
+}
+
 async function loadBalance() {
   const data = await api("balance");
   const wallet = data.data || {};
@@ -274,6 +348,8 @@ startLiveOrders();
 async function refreshAll() {
   await loadDashboard();
   await loadBalance();
+  await loadAnalytics();
 }
 
 refreshAll();
+  
