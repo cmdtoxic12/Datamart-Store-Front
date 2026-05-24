@@ -13,9 +13,7 @@ h4,
 h5,
 h6,
 small,
-span,
-td,
-th {
+span {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
@@ -25,7 +23,6 @@ th {
 .track-card,
 .chart-card,
 .delivery-progress-card,
-table,
 form {
   width: 100%;
   max-width: 100%;
@@ -211,19 +208,6 @@ section button {
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.08);
 }
-
- @keyframes glow {
-        from {
-          text-shadow: 0 0 10px #6fe458;
-        }
-        to {
-          text-shadow:
-            0 0 20px #6fe458,
-            0 0 30px #6fe458;
-        }
-      }
-
-
 
      /* #authActionBtn {
         background-color: #28a745;
