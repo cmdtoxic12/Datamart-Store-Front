@@ -208,11 +208,52 @@ async function trackOrder() {
           </p>
         </div>
 
+        <button onclick='downloadReceipt(${JSON.stringify(order)})'>
+  Download Receipt
+</button>
+
       </div>
 
     </div>
   `;
 }
+
+function downloadReceipt(order) {
+  const receipt = `
+C-LICON DATA BANK
+========================
+
+ORDER RECEIPT
+
+Reference: ${order.reference}
+Phone: ${order.phoneNumber}
+Network: ${order.network}
+Bundle: ${order.capacity} GB
+Price: GHS ${order.price}
+Status: ${order.status}
+Payment: ${order.paymentStatus}
+
+Placed At: ${new Date(order.placedAt).toLocaleString()}
+Completed At: ${
+    order.completedAt
+      ? new Date(order.completedAt).toLocaleString()
+      : "Pending"
+  }
+
+Thank you for using C-LICON DATA BANK.
+`;
+
+  const blob = new Blob([receipt], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${order.reference}-receipt.txt`;
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
 async function refreshAll() {
   await loadDashboard();
   await loadBalance();
