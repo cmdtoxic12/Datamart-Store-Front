@@ -5,6 +5,37 @@
   max-width: 100%;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.brand img {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 18px rgba(34,197,94,0.5);
+}
+
+.brand span {
+  color: #22c55e;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.login-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 18px;
+  box-shadow: 0 0 25px rgba(34,197,94,0.6);
+}
+
 p,
 h1,
 h2,
