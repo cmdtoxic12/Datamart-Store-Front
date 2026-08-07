@@ -1,8 +1,6 @@
-firebase.initializeApp(firebaseConfig);
-
 const auth = firebase.auth();
 
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged((user) => {
   if (!user) {
     window.location.href = "login.html";
   }

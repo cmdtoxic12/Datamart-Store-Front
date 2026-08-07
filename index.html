@@ -5,64 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>C-LICON DATA BANK</title>
   <link
-  rel="icon"
-  type="image/jpeg"
-  href="https://files.catbox.moe/n9j73g.jpg"
-/>
+    rel="icon"
+    type="image/jpeg"
+    href="https://files.catbox.moe/n9j73g.jpg"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <style>
-    .chart-card {
-  min-height: 330px;
-}
-
-#ordersChart {
-  width: 100% !important;
-  max-height: 280px;
-}
-    
-  .delivery-progress-card {
-  background: linear-gradient(135deg, rgba(219,234,254,0.12), rgba(34,197,94,0.08));
-  border: 1px solid rgba(147,197,253,0.25);
-  border-radius: 18px;
-  padding: 18px;
-  margin: 20px 0;
-  box-shadow: 0 0 25px rgba(59,130,246,0.12);
-}
-
-.progress-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #93c5fd;
-}
-
-.speed-box {
-  margin: 15px 0;
-  background: rgba(34,197,94,0.13);
-  border: 1px solid rgba(34,197,94,0.25);
-  padding: 14px;
-  border-radius: 12px;
-  color: #22c55e;
-  font-weight: bold;
-}
-
-.progress-line p {
-  margin: 8px 0;
-  color: #e5e7eb;
-}
-
-.progress-line small {
-  color: #60a5fa;
-}
-  </style>
-
   <aside class="sidebar">
     <div class="brand">
-  <img src="https://files.catbox.moe/n9j73g.jpg" alt="C-LICON Logo" />
-  <span>C-LICON</span>
-</div>
+      <img src="https://files.catbox.moe/n9j73g.jpg" alt="C-LICON Logo" />
+      <span>C-LICON</span>
+    </div>
     <button onclick="showPage('dashboard')">Dashboard</button>
     <button onclick="showPage('orders')">Orders</button>
     <button onclick="showPage('products')">Products</button>
@@ -75,36 +29,51 @@
   <main class="main">
     <header>
       <h1>Agent Store Dashboard</h1>
-      <button onclick="refreshAll()">Refresh</button>
-      <button onclick="logout()">Logout</button>
+      <div class="header-actions">
+        <button onclick="refreshAll()">Refresh</button>
+        <button onclick="logout()">Logout</button>
+      </div>
     </header>
 
     <section id="dashboard" class="page active">
       <div class="cards">
         <div class="delivery-progress-card">
-  <div class="progress-title">
-    <span>🚚</span>
-    <h3>Delivery Progress</h3>
-  </div>
-
-  <div class="speed-box">
-    ⚡ Deliveries are blazing fast! Your order should arrive within minutes.
-  </div>
-
-  <div class="progress-line">
-    <p id="lastDelivered">✅ Last delivered: Loading...</p>
-    <p id="checkingNow">🔄 Checking now: Loading...</p>
-    <small id="lastChecked">Last checked: --</small>
-  </div>
+          <div class="progress-title">
+            <span>🚚</span>
+            <h3>Delivery Progress</h3>
+          </div>
+          <div class="speed-box">
+            ⚡ Deliveries are blazing fast! Your order should arrive within minutes.
+          </div>
+          <div class="progress-line">
+            <p id="lastDelivered">✅ Last delivered: Loading...</p>
+            <p id="checkingNow">🔄 Checking now: Loading...</p>
+            <small id="lastChecked">Last checked: --</small>
+          </div>
         </div>
-        <div class="card"><h3>Total Orders</h3><p id="totalOrders">...</p></div>
-        <div class="card"><h3>Total Revenue</h3><p id="totalRevenue">...</p></div>
-        <div class="card"><h3>Total Customers</h3><p id="totalCustomers">...</p></div>
-        <div class="card"><h3>Store Status</h3><p id="storeStatus">...</p></div>
+
+        <div class="card">
+          <h3>Total Orders</h3>
+          <p id="totalOrders">...</p>
+        </div>
+        <div class="card">
+          <h3>Total Revenue</h3>
+          <p id="totalRevenue">...</p>
+        </div>
+        <div class="card">
+          <h3>Total Customers</h3>
+          <p id="totalCustomers">...</p>
+        </div>
+        <div class="card">
+          <h3>Store Status</h3>
+          <p id="storeStatus">...</p>
+        </div>
+
         <div class="chart-card">
-  <h2>Order Analytics</h2>
-  <canvas id="ordersChart"></canvas>
+          <h2>Order Analytics</h2>
+          <canvas id="ordersChart"></canvas>
         </div>
+      </div>
     </section>
 
     <section id="orders" class="page">
@@ -141,9 +110,18 @@
     <section id="wallet" class="page">
       <h2>Wallet</h2>
       <div class="cards">
-        <div class="card"><h3>Deposit</h3><p id="depositBalance">...</p></div>
-        <div class="card"><h3>Available Earnings</h3><p id="availableEarnings">...</p></div>
-        <div class="card"><h3>Pending</h3><p id="pendingBalance">...</p></div>
+        <div class="card">
+          <h3>Deposit</h3>
+          <p id="depositBalance">...</p>
+        </div>
+        <div class="card">
+          <h3>Available Earnings</h3>
+          <p id="availableEarnings">...</p>
+        </div>
+        <div class="card">
+          <h3>Pending</h3>
+          <p id="pendingBalance">...</p>
+        </div>
       </div>
     </section>
 
@@ -168,73 +146,71 @@
     <section id="placeOrder" class="page">
       <h2>Place Order</h2>
       <form id="orderForm">
-        <input id="phoneNumber" placeholder="Phone number e.g. 0241234567" required />
-
+        <input
+          id="phoneNumber"
+          placeholder="Phone number e.g. 0241234567"
+          required
+        />
         <select id="network" required>
           <option value="YELLO">MTN</option>
           <option value="TELECEL">Telecel</option>
           <option value="AT_PREMIUM">AirtelTigo</option>
         </select>
-
-        <input id="capacity" type="number" placeholder="Capacity in GB" required />
-
+        <input
+          id="capacity"
+          type="number"
+          placeholder="Capacity in GB"
+          min="1"
+          required
+        />
         <button type="submit">Place Order</button>
       </form>
-      <pre id="placeOrderResult"></pre>
+      <div id="placeOrderResult"></div>
     </section>
 
     <section id="trackOrder" class="page">
       <h2>Track Order</h2>
       <input id="trackReference" placeholder="Order reference" />
       <button onclick="trackOrder()">Track</button>
-      <pre id="trackResult"></pre>
+      <div id="trackResult"></div>
     </section>
   </main>
 
   <nav class="mobile-nav">
-  <button onclick="showPage('dashboard')">
-    <span>🏠</span>
-    Home
-  </button>
-
-  <button onclick="showPage('orders')">
-    <span>📦</span>
-    Orders
-  </button>
-
-  <button onclick="showPage('wallet')">
-    <span>💳</span>
-    Wallet
-  </button>
-
-  <button onclick="showPage('placeOrder')">
-    <span>➕</span>
-    Order
-  </button>
-
-  <button onclick="showPage('trackOrder')">
-    <span>🔍</span>
-    Track
-  </button>
+    <button onclick="showPage('dashboard')">
+      <span>🏠</span>
+      Home
+    </button>
+    <button onclick="showPage('orders')">
+      <span>📦</span>
+      Orders
+    </button>
+    <button onclick="showPage('wallet')">
+      <span>💳</span>
+      Wallet
+    </button>
+    <button onclick="showPage('placeOrder')">
+      <span>➕</span>
+      Order
+    </button>
+    <button onclick="showPage('trackOrder')">
+      <span>🔍</span>
+      Track
+    </button>
   </nav>
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script src="firebase-config.js"></script>
-
-<script src="protect.js"></script>
-
-  <script src="app.js"></script>
-
-   <div id="loader" class="loader-overlay">
-  <div class="neon-loader"></div>
-  <p>Processing...</p>
-</div>
+  <div id="loader" class="loader-overlay">
+    <div class="neon-loader"></div>
+    <p>Processing...</p>
+  </div>
 
   <div id="toastBox"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="protect.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
