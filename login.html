@@ -1,121 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - C-LICON</title>
-    <link
-  rel="icon"
-  type="image/jpeg"
-  href="https://files.catbox.moe/n9j73g.jpg"
-/>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - C-LICON</title>
+  <link
+    rel="icon"
+    type="image/jpeg"
+    href="https://files.catbox.moe/n9j73g.jpg"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-card">
+    <img
+      class="login-logo"
+      src="https://files.catbox.moe/n9j73g.jpg"
+      alt="C-LICON Logo"
     />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="auth-body">
-    <style>
-      @keyframes glow {
-        from {
-          text-shadow: 0 0 10px #6fe458;
-        }
-        to {
-          text-shadow:
-            0 0 20px #6fe458,
-            0 0 30px #6fe458;
-        }
-      }
-            button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 10px 20px;
-        cursor: pointer;
-        display: inline-block;
-      }
+    <h1>C-LICON DATA BANK</h1>
+    <p id="authSubtitle">Login to continue</p>
 
-      button:hover {
-        background-color: #0056b3;
-      }
-
-      p {
-        color: #6fe458;
-        font-size: 20px;
-        font-weight: bold;
-        padding: 10px 0;
-        text-align: center;
-        text-shadow: 0 0 10px #6fe458;
-        animation: glow 1.5s infinite alternate;
-      }
-
-      input {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid black;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-
-      input:focus {
-        outline: none;
-        border-color: #6fe458;
-        box-shadow: 0 0 5px #6fe458;
-      }
-
-      input:hover {
-        border-color: #6fe458;
-        box-shadow: 0 0 5px #6fe458;
-        background-color: rgba(111, 228, 88, 0.1);
-      }
-    </style>
-    <div class="auth-card">
-      <img
-  class="login-logo"
-  src="https://files.catbox.moe/n9j73g.jpg"
-  alt="C-LICON Logo"
-/>
-      <h1>C-LICON DATA BANK</h1>
-      <p id="authSubtitle">Login to continue</p>
-
-      <div class="auth-tabs">
-        <button id="loginTab" class="active" onclick="setAuthMode('login')">
-          Login
-        </button>
-        <button id="signupTab" onclick="setAuthMode('signup')">Signup</button>
-      </div>
-
-      <input id="email" type="email" placeholder="Email" />
-      <input id="password" type="password" placeholder="Password" />
-
-      <input
-        id="confirmPassword"
-        type="password"
-        placeholder="Confirm Password"
-        class="hidden"
-      />
-
-      <button id="authActionBtn" onclick="login()">Login</button>
-
-      <button id="googleLoginBtn" onclick="googleLogin()">
-        <i class="fa-brands fa-google"></i> Continue with Google
+    <div class="auth-tabs">
+      <button id="loginTab" class="active" onclick="setAuthMode('login')">
+        Login
       </button>
-
-      <p id="authMessage"></p>
+      <button id="signupTab" onclick="setAuthMode('signup')">Signup</button>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="auth.js"></script>
+    <input id="email" type="email" placeholder="Email" autocomplete="email" />
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    />
+    <input
+      id="confirmPassword"
+      type="password"
+      placeholder="Confirm Password"
+      class="hidden"
+      autocomplete="new-password"
+    />
 
-    <div id="toastBox"></div>
-  </body>
+    <button id="authActionBtn" onclick="login()">Login</button>
+
+    <button id="googleLoginBtn" onclick="googleLogin()">
+      <i class="fa-brands fa-google"></i> Continue with Google
+    </button>
+
+    <p id="authMessage"></p>
+  </div>
+
+  <div id="toastBox"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+</body>
 </html>
