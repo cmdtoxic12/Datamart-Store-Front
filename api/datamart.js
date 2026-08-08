@@ -42,7 +42,9 @@ module.exports = async function handler(req, res) {
       if (status) endpoint += `&status=${encodeURIComponent(status)}`;
     } else if (action === "order") {
       if (!reference) {
-        return res.status(400).json({ status: "error", message: "reference is required" });
+        return res
+          .status(400)
+          .json({ status: "error", message: "reference is required" });
       }
       endpoint = `/orders/${encodeURIComponent(reference)}`;
     } else if (action === "customers") {
@@ -50,7 +52,9 @@ module.exports = async function handler(req, res) {
       endpoint = `/customers?limit=50&q=${encodeURIComponent(q)}`;
     } else if (action === "customer") {
       if (!phone) {
-        return res.status(400).json({ status: "error", message: "phone is required" });
+        return res
+          .status(400)
+          .json({ status: "error", message: "phone is required" });
       }
       endpoint = `/customers/${encodeURIComponent(phone)}`;
     } else if (action === "place-order") {
